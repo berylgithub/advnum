@@ -1,1 +1,1 @@
-# advnum
+# advanced numerical analysis exercises
