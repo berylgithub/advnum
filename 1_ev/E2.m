@@ -1,75 +1,25 @@
-#exercise ch 1:
-max_l = 20;
-#E2 (i):
-for l=1:max_l;
-  n=2^l;
-  A = zeros(n,n);
-  for i=1:n;
-    for k=1:n;
-      A(i,k) = i+k;
-    end
-  end
+memsize = 8*(10^9); #8GB of RAM
+max_l = floor(log2(sqrt(memsize/8)));
+for l=1:max_l
+  n = 2^l;
+  v = (1:n)';
+  B = repmat(v,1,n);
+
+  A = B + B';
   tic;lam=eig(A);tim(l,1)=toc;
-  disp(["l =",num2str(l)," done"])
-end
-disp("case 1 done!")
-
-#E2 (ii):
-for l=1:max_l;
-  n=2^l;
-  A = zeros(n,n);
-  for i=1:n
-    for k=1:n
-      A(i,k) = i+(k^2);
-    end
-  end
+  
+  A = B + B'.^2;
   tic;lam=eig(A);tim(l,2)=toc;
-  disp(["l =",num2str(l)," done"])
-
-end
-disp("case 2 done!")
-
-
-#E2 (iii):
-for l=1:max_l;
-  n=2^l;
-  A = zeros(n,n);
-  for i=1:n
-    for k=1:n
-      A(i,k) = sqrt(i*k + i + 1);
-    end
-  end
+  
+  A = sqrt((B.*B') + B + 1);
   tic;lam=eig(A);tim(l,3)=toc;
-  disp(["l =",num2str(l)," done"])
-end
-disp("case 3 done!")
-
-#E2 (iv):
-for l=1:max_l
-  n=2^l;
-  A = zeros(n,n);
-  for i=1:n
-    for k=1:n
-      A(i,k) = -max(3-abs(i-k), 0);
-    end
-  end
+  
+  A = -max(3 - abs(B - B'), 0);
   tic;lam=eig(A);tim(l,4)=toc;
-  disp(["l =",num2str(l)," done"])
-end
-disp("case 4 done!")
 
-#E2 (v):
-for l=1:max_l
-  A = zeros(n,n);
-  for i=1:n
-    for k=1:n
-      A(i,k) = -max(3-abs(i-k), 0);
-    end
-  end
-  A = sparse(A);
-  tic;lam=eig(A);tim(l,5)=toc;
-  disp(["l =",num2str(l)," done"])
+  A = -max(3 - abs(B - B'), 0);
+  A = sparse(A)
+  tic;lam=eigs(A);tim(l,5)=toc;
 end
-disp("case 5 done!")
-
 loglog(tim);
+legend({'c1','c2','c3','c4','c5'}, 'location', 'northwest')
