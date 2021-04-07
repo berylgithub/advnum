@@ -6,6 +6,3 @@ sigma = diag(D)(1) #initial shift using the value from eig(A)
 x = rand(n,1) #random pick
 %gamma = 0.01 # != 0 const
 [x, sigma] = inverse_iteration(A, I, x, sigma, 5)
-%A = [3 -1 -1; 2 1 -2; 0 -1 2];
-%u = [1 0 1]'
-%A*u
