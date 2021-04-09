@@ -1,6 +1,5 @@
 function [x, sigma] = inverse_iteration(A, B, x, sigma, l)
   for i=1:l
-%    x = (gamma*inv(A - sigma*B)*(B*x)); #eigvec
     xl = inv(A - sigma*B)*(B*x);
     x = xl/norm(xl); #eigvec
     sigma = (x'*A*x)/(x'*B*x); #rayleigh quotient for eigval
