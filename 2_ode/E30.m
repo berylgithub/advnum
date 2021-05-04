@@ -16,25 +16,23 @@ for it=1:length(h)
     ym(i+1,2) = ym(i,2)+h(it)*(ym(i,2)-(2*t(i)/ym(i,2)));
     
     #1st half step:
-    ky1 = 
-    kz1 =
-    ky2 =  
-    ym(i+1,3) = ym(i,3)+h(it)*ky2;
-    #2nd half step:
-    ym(i+1,4) = ym(i,4)+h(it)*(ym(i,4)-(2*t(i)/ym(i,4)));
+    yk = ym(i,3)+0.5*h(it)*(ym(i,3)-(2*t(i)/ym(i,3)));
+    fyk = yk-(2*t(i)/yk);
+    ym(i+1,3) = ym(i,3)+h(it)*fyk;
     
-    ky1 = dy(i,2);
-    kz1 = -101*dy(i,2) - 100*ym(i,3); 
-    ky2 = dy(i,2)+h(it)*kz1;
-    ym(i+1,3) = ym(i,3) + 0.5*h(it)*(ky1 + ky2);
+    #2nd half step:
+    fy = ym(i,4)-(2*t(i)/ym(i,4));
+    yk = ym(i,4)+h(it)*fy;
+    fyk = yk-(2*t(i)/yk);
+    ym(i+1,4) = ym(i,4)+0.5*h(it)*(fy+fyk);
+    
+    #runge kutta:
+    
     
   endfor
-  if it == 1
-    disp("[y_exact, y_euler, y_2, y_3] = ");
-    disp(ym);
-  else
-    plot(t,ym(:,1),"r", t,ym(:,2),"g", t,ym(:,3),"b");
-    title(["h = ",num2str(h(it))]); xlabel('t'); ylabel('y'); legend({'y exact','y euler','y 2halfstep'},'Location','northeast');
-    figure()
-  endif  
+
+  plot(t,ym(:,1),"r", t,ym(:,2),"g", t,ym(:,3),"b", t,ym(:,4),"c");
+  title(["h = ",num2str(h(it))]); xlabel('t'); ylabel('y'); legend({'y exact','y euler','y 1halfstep', 'y 2halfstep'},'Location','northeast');
+  figure()
+    
 endfor
