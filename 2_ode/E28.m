@@ -4,20 +4,11 @@ dy = 0; #initial speed at the time of stopping
 g = 9.81;
 R = 6.36*1e6;
 N = 1e6;
-h = abs(R-H)/N;
+h = abs(R-y)/N;
 limit_iter = inf; #to store i where y_i > R && y_i closest to R;
 y_prev = y_next = inf; #to store the value of y_i < R and y_i > R which are the closest to R;
-##y_vec = zeros(3,1); #store the last 3 y_i, although only last 2 is used, just in case
-len = length(y_vec)
 for i=1:N
   %%storing mechanism:
-##  if mod(i,len) == 1
-##    y_vec(1) = y;
-##  elseif mod(i,len) == 2
-##    y_vec(2) = y;
-##  elseif mod(i,len) == 0
-##    y_vec(3) = y;
-##  endif
   y_prev = y;
   
   y1 = y + h*dy;
