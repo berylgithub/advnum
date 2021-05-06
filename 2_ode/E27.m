@@ -1,14 +1,26 @@
-%E27 (i) and (ii):
+%E27 (i):
 h = 0.1;
 t = 11;
-x = y = dx = dy = zeros(t,1);
+x = y = zeros(t,1);
 ##x = linspace(1,0,11)
-x(1) = 1; dx(1) = 2; dy(1) = 1; #velocity of river y'(0) = 1, velocity of dog x'(o) = 2; dog's starting point = (1,0)
+x(1) = 1; dx = -2; dy = 1; #velocity of river y'(0) = 1, velocity of dog x'(o) = -2; dog's starting point = (1,0)
+for i=1:t-1
+  x(i+1) = x(i) + h*dx;
+  y(i+1) = y(i) + h*dy;
+endfor
+plot(x, y);
+xlabel("x");
+ylabel("y");
+figure();
 
-%trajectory using Euler's method:
+
+%E27 (ii):
+t=20
+x = y = zeros(t,1);
+x(1) = 1;
 for i=1:t-1
   x(i+1) = x(i) + h*((-2*x(i))/sqrt(x(i)^2 + y(i)^2));
-  y(i+1) = y(i) + h*((1-2*y(i))/sqrt(x(i)^2 - y(i)^2));
+  y(i+1) = y(i) + h*((1-2*y(i))/sqrt(x(i)^2 + y(i)^2));
 endfor
 
 disp(x);
@@ -35,12 +47,12 @@ for i=1:t
   #approximate next x and y (of t_{k+1} from newton\s method):
   for j=1:N
     xl = xk + h*((-2*xk)/sqrt(xk^2 + yk^2));
-    yl = yk + h*((1-2*yk)/sqrt(xk^2 - yk^2));
+    yl = yk + h*((1-2*yk)/sqrt(xk^2 + yk^2));
     xk = xl;
     yk = yl;
   endfor
   if (xk < xprev) && (xk>0) #check for smallest && positive x_{t+1}
-    sp_tk = tk;
+    sp_tk = tl;
     iternum = i;
   endif
   tk = tl;
