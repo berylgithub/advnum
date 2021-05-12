@@ -1,53 +1,60 @@
-%E27 (i):
-h = 0.1;
+##E27 (i):
 t = 11;
-x = y = zeros(t,1);
-##x = linspace(1,0,11)
-x(1) = 1; dx = -2; dy = 1; #velocity of river y'(0) = 1, velocity of dog x'(o) = -2; dog's starting point = (1,0)
-for i=1:t-1
-  x(i+1) = x(i) + h*dx;
-  y(i+1) = y(i) + h*dy;
+x = linspace(1,0,t);
+y = zeros(t,1);
+finish_x = 0; finish_y = 0; #master's coor
+h = 0.1;
+rspd = 1; dspd = 2; x(1) = 1; #speed of river = 1, speed of dog = 2; dog's starting point = (1,0)
+for i=1:t
+  dir_x = finish_x - x(i);
+  dir_y = finish_y - y(i);
+  move_x = dir_x*dspd;
+  move_y = dir_y*dspd + rspd;
+  x(i+1) = x(i) + h*move_x;
+  y(i+1) = y(i) + h*move_y;
+  
 endfor
+
 plot(x, y);
 xlabel("x");
 ylabel("y");
 figure();
 
 
-%E27 (ii):
-t=20
-x = y = zeros(t,1);
+##E27 (ii):
+N = 100;
+h = 1/N;
+x = y = zeros(N,1);
 x(1) = 1;
-for i=1:t-1
-  x(i+1) = x(i) + h*((-2*x(i))/sqrt(x(i)^2 + y(i)^2));
-  y(i+1) = y(i) + h*((1-2*y(i))/sqrt(x(i)^2 + y(i)^2));
+for i=1:N-1
+  x(i+1) = x(i) + h*(-2*x(i)/sqrt(x(i)^2 + y(i)^2));
+  y(i+1) = y(i) + h*(1-2*y(i)/sqrt(x(i)^2 + y(i)^2));
 endfor
 
-disp(x);
-disp("");
-disp(y);
 
 plot(x, y);
 xlabel("x");
 ylabel("y");
 
+
 %===================================================
-%E27 (iii):
+##E27 (iii):
 %Newton's method to determine t where x(t) $\approx$ 0:
+maxiter = 20;
 tk = 0;
 xk = 1;
 yk = 0;
 sp_tk = inf; #tk with smallest positive xk
 iternum = inf; #num of iter (time unit) to reach smallest positive xt
-for i=1:t
-  tl = tk - (xk/((-2*xk)/sqrt(xk^2 + yk^2))) #t_k+1 = t_k - (x(t)/x'(t))
+for i=1:maxiter
+  tl = tk - (xk/(-2*xk/sqrt(xk^2 + yk^2))) #t_k+1 = t_k - (x(t)/x'(t))
   xprev = xk;
-  N = 10;
+  N = 100;
   h = (tl-tk)/N;
   #approximate next x and y (of t_{k+1} from newton\s method):
   for j=1:N
-    xl = xk + h*((-2*xk)/sqrt(xk^2 + yk^2));
-    yl = yk + h*((1-2*yk)/sqrt(xk^2 + yk^2));
+    xl = xk + h*(-2*xk/sqrt(xk^2 + yk^2));
+    yl = yk + h*(1-2*yk/sqrt(xk^2 + yk^2));
     xk = xl;
     yk = yl;
   endfor
