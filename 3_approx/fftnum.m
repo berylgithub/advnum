@@ -1,5 +1,8 @@
-function z_prime = fftnum(N, T, P, Q, z)
+function z_prime = fftnum(z)
   % inputs:
+  N = length(z);
+  P = 1; Q = N;
+  T = 2; #must look for the smallest factors of Q
   P_prime = P*T ; Q_prime = Q/T;
   z_prime = zeros(N,1);
   

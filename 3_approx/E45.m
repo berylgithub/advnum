@@ -2,14 +2,13 @@ format compact;
 % E45(i):
 ##rng(1); % random seed, doesnt work in octave, only in matlab
 N = 6
-P = 1; Q=N;
 z = linspace(0, 1, N);
 ##z = rand(N,1); %random data vector with length = N
 disp("initial z vector data:")
 disp(z);
 T = 2
 disp("");
-z_prime = fftnum(N, T, P, Q, z);
+z_prime = fftnum(z);
 disp("transformed z:")
 disp(z_prime);
 
@@ -36,7 +35,6 @@ for k=1:len_k
   for i = p
     N = i^k;
     if N <= 1e5
-      disp(N);
       n_vector(iter) = N;
       z = rand(N,1);
       tic;
