@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>PDE - E53</TITLE>
+</HEAD>
+<body>
+	<P>
+	All of the meshes are generated using <A HREF="http://www.cs.cmu.edu/~quake/triangle.html">Triangle</A> software.<br> 
+	Example of mesh generation command: "triangle -p circle.poly", generates circle mesh from "circle.poly" file. <br>
+	Example of mesh refinement command: "triangle -rpa0.5 circle.poly", refines "circle.poly" by 0.5 refinement parameter. <br>
+	Example of image generation command: "showme circle.poly".
+	<ul>
+		<li>
+			E53(i) 1x3 Rectangle:
+			<br>
+			<ul>
+				<li>
+				Base rectangle geometry: <br>
+				<img src="E53(i)(i).png">
+				</li>
+				<br>
+				<li>
+				Coarse with refinement parameter = 0.2: <br>
+				<img src="E53(i)(ii).png">
+				</li>
+				<br>
+				<li>
+				Medium with param = 0.05: <br>
+				<img src="E53(i)(iii).png">
+				</li>
+				<br>
+				<li>
+				Fine with param = 0.0125: <br>
+				<img src="E53(i)(iv).png">
+				</li>
+				<br>
+				<li>
+				Very fine with param = 0.006125: <br>
+				<img src="E53(i)(v).png">
+				</li>
+			</ul>
+			<br>			
+		</li>
+		<li>
+			E53(ii) Triangle with (1,1,sqrt(2)) sides:
+			<br>
+			<ul>
+				<li>
+				Base triangle geometry: <br>
+				<img src="E53(ii)(i).png">
+				</li>
+				<br>
+				<li>
+				Coarse with refinement parameter = 0.25: <br>
+				<img src="E53(ii)(ii).png">
+				</li>
+				<br>
+				<li>
+				Medium with param = 0.0625: <br>
+				<img src="E53(ii)(iii).png">
+				</li>
+				<br>
+				<li>
+				Fine with param = 0.03125: <br>
+				<img src="E53(ii)(iv).png">
+				</li>
+				<br>
+				<li>
+				Very fine with param = 0.003125: <br>
+				<img src="E53(ii)(v).png">
+				</li>
+			</ul>
+			<br>			
+		</li>
+		<li>
+			E53(iii) L-shaped region:
+			<br>
+			<ul>
+				<li>
+				Base L-shape geometry: <br>
+				<img src="E53(iii)(i).png">
+				</li>
+				<br>
+				<li>
+				Coarse with refinement parameter = 0.5: <br>
+				<img src="E53(iii)(ii).png">
+				</li>
+				<br>
+				<li>
+				Medium with param = 0.125: <br>
+				<img src="E53(iii)(iii).png">
+				</li>
+				<br>
+				<li>
+				Fine with param = 0.03125: <br>
+				<img src="E53(iii)(iv).png">
+				</li>
+				<br>
+				<li>
+				Very fine with param = 0.003125: <br>
+				<img src="E53(iii)(v).png">
+				</li>
+			</ul>
+			<br>			
+		</li>
+		<li>
+			E53(iv) <br>
+			<A HREF="../Circle.ipynb">Script to generate the points on the radius of the circle.</A><br>
+			Circle geometry with 100 points around the radius:
+			<br>
+			<ul>
+				<li>
+				Base circle: <br>
+				<img src="E53(iv)(i).png">
+				</li>
+				<br>
+				<li>
+				Default mesh on base circle: <br>
+				<img src="E53(iv)(ii).png">
+				</li>
+				<br>
+				<li>
+				Several samples of refinement parameters between [0.5, 0.0625] resulted in the same mesh: <br>
+				<img src="E53(iv)(iii).png">
+				</li>
+				<br>
+				<li>
+				Fine with param = 0.003125: <br>
+				<img src="E53(iv)(iv).png">
+				</li>
+				<br>
+				<li>
+				Very fine with param = 0.0003125: <br>
+				<img src="E53(iv)(v).png">
+				</li>
+			</ul>
+			<br>			
+		</li>
+		<li>
+			E53(v) <br>
+			<A HREF="../Circle.ipynb">Script to generate the points on the inner and outer circle radius.</A><br>
+			Circle geometry with 100 points around the radius, inner radius = 1, outer radius = 2:
+			<br>
+			<ul>
+				<li>
+				Base donut: <br>
+				<img src="E53(v)(i).png">
+				</li>
+				<br>
+				<li>
+				Several samples of refinement parameters between [0.5, 0.125] resulted in the same mesh: <br>
+				<img src="E53(v)(ii).png">
+				</li>
+				<br>
+				<li>
+				Refinement param = 0.0625: <br>
+				<img src="E53(v)(iii).png">
+				</li>
+				<br>
+				<li>
+				param = 0.03125: <br>
+				<img src="E53(v)(iv).png">
+				</li>
+				<br>
+				<li>
+				param = 0.003125: <br>
+				<img src="E53(v)(v).png">
+				</li>
+			</ul>
+			<br>			
+		</li>
+		<li>
+			E53(v) Cat's face:
+			<br>
+			<ul>
+				<li>
+				Baseline of the cat's face: <br>
+				<img src="E53(vi)(i).png">
+				</li>
+				<br>
+				<li>
+				Base mesh of the cat's face: <br>
+				<img src="E53(vi)(ii).png">
+				</li>
+				<br>
+				<li>
+				Refinement param = 0.25: <br>
+				<img src="E53(vi)(iii).png">
+				</li>
+				<br>
+				<li>
+				param = 0.0625: <br>
+				<img src="E53(vi)(iv).png">
+				</li>
+				<br>
+				<li>
+				param = 0.003125: <br>
+				<img src="E53(vi)(v).png">
+				</li>
+			</ul>
+			<br>			
+		</li>
+	</ul>
+	<br>
+	<A HREF="objects.rar">All of the geometry files used to generate the meshes</A>
+	</P>
+</body>
+</html>
