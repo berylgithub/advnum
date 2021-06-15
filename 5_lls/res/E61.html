@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>Large Linear Systems - E61</TITLE>
+</HEAD>
+<body>
+	<P>
+	<ul>
+		<li>
+			E61(i):
+			<br>
+			<ul>
+				<li>
+					Uses mmread.m and mminfo.m from <A HREF="https://math.nist.gov/MatrixMarket/mmio/matlab/mmiomatlab.html"> Matrix Market</A> to read the metadata and load the entries:
+					<br>
+					<img src="E61(i)_code_1.png">
+					<br>
+					<A HREF="../E61.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Output sample, using jgl009.mtx:
+					<br>
+					<img src="E61(i)_output_1.png">
+				</li>
+			<br><br>
+			</ul>
+		</li>
+		<li>
+			E61(ii):
+			<br>
+			<ul>
+				<li>
+					test 7 matrices from matrix market, reordering by using {'Column-Permutation', 'Min Degree', 'Cuthill-McKee'}:
+					<br>
+					<img src="E61(ii)_code_1.png">
+					<br>
+					<img src="E61(ii)_code_2.png">
+					<br>
+					<A HREF="../E61.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Outputs:
+					<ul>
+						<li>
+							bcspwr01.mtx:
+							<br>
+							<img src="E61(ii)_output_1.png">
+							<br>
+						</li>
+						<li>
+							can___24.mtx:
+							<br>
+							<img src="E61(ii)_output_2.png">
+							<br>
+						</li>
+						<li>
+							fidapm05.mtx:
+							<br>
+							<img src="E61(ii)_output_3.png">
+							<br>
+						</li>
+						<li>
+							tols90.mtx:
+							<br>
+							<img src="E61(ii)_output_4.png">
+							<br>
+						</li>
+						<li>
+							qc324.mtx:
+							<br>
+							<img src="E61(ii)_output_5.png">
+							<br>
+						</li>
+						<li>
+							memplus.mtx:
+							<br>
+							<img src="E61(ii)_output_6.png">
+							<br>
+						</li>
+						<li>
+							saylr3.mtx:
+							<br>
+							<img src="E61(ii)_output_7.png">
+							<br>
+						</li>
+					</ul>
+				</li>
+			<br><br>
+			The differences between the fills (non-zero additions) would be visible on cholesky/LU decomposed matrices, which requires the information of positive-definiteness.
+		</li>
+	</ul>
+	</P>
+</body>
+</html>
