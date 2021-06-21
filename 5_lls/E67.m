@@ -14,4 +14,3 @@ disp(Cv_list{Jv}) % the Cv:= Jv U Kv or (Jv|Kv) where |:= separator index
 Kv = Cv_list{Jv}(separator_idx_list(Jv)+1:end)
 disp(["fill count = ",num2str(fill_count)]) % total fills generated
 
-% Absorb nodes into supernodes (if any):
