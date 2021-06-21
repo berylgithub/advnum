@@ -1,4 +1,4 @@
-function [fill_count, Cv_list] = eliminate_var(M, e)
+function [fill_count, Cv_list, separator_idx_list] = eliminate_var(M, e)
   % Eliminate the nodes based on the elimination ordering, while generating the list of Cv:
   % M := sparse matrix
   % e := a vector of elmination ordering
@@ -14,7 +14,7 @@ function [fill_count, Cv_list] = eliminate_var(M, e)
         Kv{end+1} = j(idx);
       endif
     endfor
-    % Create Cv := Jv U Kv (for cliques):
+    % Create Cv := Jv U Kv:
     Cv_list{end+1} = Kv;
     % Calculate the fills:
     Kv_vec = cell2mat(Kv)(2:end);
