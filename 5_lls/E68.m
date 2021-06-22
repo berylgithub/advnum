@@ -1,6 +1,6 @@
 %E68
-rows = 4
-cols = 3
+rows = 20
+cols = 20
 N = rows*cols;
 A = grid_generator(rows, cols);
 A(1:size(A,1)+1:end) = -4; % only need to change the diag from grid representation

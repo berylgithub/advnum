@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>Large Linear Systems - E67</TITLE>
+</HEAD>
+<body>
+	<P>
+	<ul>
+		<li>
+			E67:
+			<br>
+			<ul>
+				<li>
+					Main caller, represents 5-points Laplacian discretization as a row*col grid and then do an elimination-ordering routine on it:
+					<br>
+					<img src="E67_code_1.png">
+					<br>
+					<A HREF="../E67.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Function to generate row*col grid:
+					<br>
+					<img src="E67_code_2.png">
+					<br>
+					<A HREF="../grid_generator.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Function to create Cv:=Jv U Kv from  an elimination order on a sparse matrix, also returns the fillcount:
+					<br>
+					<img src="E67_code_3.png">
+					<br>
+					<A HREF="../eliminate_var.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					(Output) 4*3 grid in sparse format:
+					<br>
+					<img src="E67_output_1.png">
+				</li>
+				<br>
+				<li>
+					(Output) linear sequence of elimination order "e", and the resulting Cv on 4*3 grid:
+					<br>
+					<img src="E67_output_2.png">
+				</li>
+				<br>
+				<li>
+					(Output) elimination order from Minimum-Degree algorithm, and the resulting Cv on 4*3 grid:
+					<br>
+					<img src="E67_output_3.png">
+				</li>
+				<br>
+				<li>
+					(Output) Cv on 32*32 grid using Minimum-Degree algorithm:
+					<br>
+					<img src="E67_output_4.png">
+				</li>
+			<br><br>
+		</li>
+	</ul>
+	</P>
+</body>
+</html>

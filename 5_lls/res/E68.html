@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>Large Linear Systems - E68</TITLE>
+</HEAD>
+<body>
+	<P>
+	<ul>
+		<li>
+			E68:
+			<br>
+			<ul>
+				<li>
+					Main caller and multifrontal linear system solver on 5-point discretizations Laplacian, mostly the functions are written in the previous exercise (elimination ordering, Cv, and fills):
+					<br>
+					<img src="E68_code_1.png">
+					<br>
+					<img src="E68_code_2.png">
+					<br>
+					<A HREF="../E68.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Output of x_direct from A\b, and x from the multifrontal algorithm using the Cv from the elimination ordering:
+					<br>
+					<img src="E68_output_1.png">
+					<br>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	</P>
+</body>
+</html>
