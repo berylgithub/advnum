@@ -25,4 +25,3 @@ for i=1:k_outer
 endfor
 disp("||x_gmres - solve(A,b)||:")
 norm(x - (A\b))
-A\b
