@@ -14,7 +14,7 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} calc_ut (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} half_step_methods (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
@@ -22,8 +22,19 @@
 ## Author: Saint8312 <Saint8312@SAINT8312-RYZEN>
 ## Created: 2021-07-05
 
-function dudt = calc_ut (t, u0)
-  %t unused, just to match the input of ode45
-  global A
-  dudt = A*u0;% c = 1 is ommited
+function y = half_step_methods (fun, t, y0, h, method)
+  %method = {1,2,3}
+  %uses dummy t for fun input
+  y = y0;
+  if method == 1
+    for i=t
+      y_next = y + h*fun(0,(y + (h/2)*fun(0,y)));
+      y = y_next;
+    endfor
+  elseif method == 2
+    for i=t
+      y_next = y + (h/2)*(fun(0, y) + fun(0, y + h*fun(0, y)));
+      y = y_next;
+    endfor
+  endif
 endfunction
