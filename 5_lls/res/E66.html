@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>Large Linear Systems - E66</TITLE>
+</HEAD>
+<body>
+	<P>
+	<ul>
+		<li>
+			E66:
+			<br>
+			<ul>
+				<li>
+					Main caller, contains GMRES, precond-GMRES, reordered-precond-GMRES:
+					<br>
+					<img src="E66_code_1.png">
+					<br>
+					<img src="E66_code_2.png">
+					<br>
+					<A HREF="../E66.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Modified GMRES function with error tolerance to determine max-iteration:
+					<br>
+					<img src="E66_code_3.png">
+					<br>
+					<A HREF="../gmres_num.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Sample output for 1024 x 1024 matrix:
+					<br>
+					<img src="E66_output_2.png">
+				</li>
+				<br>
+				<li>
+					Output, the maximum iterations reached for each {GMRES, precond-GMRES, reordered-precond-GMRES (currently reordered using AMD (no nested dissection yet))} for increasing 2^k (k:=dim power) rows and cols:
+					<br>
+					<img src="E66_output_1.png">
+					<br>
+				</li>
+			<br><br>
+		</li>
+	</ul>
+	</P>
+</body>
+</html>

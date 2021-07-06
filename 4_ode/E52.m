@@ -77,7 +77,7 @@ for m=1:2
     k = k_array(it, m);
     %if k was not found:
     if k == 0
-      k = 5
+      k = 5;
     endif
     h = 2^(-k); %2^(-k)
     t = linspace(0, 10, T/h + 1);
@@ -99,7 +99,7 @@ for m=1:2
     ##size(u)
     u_exact = sin(x)*exp(-T) + sin(9*x)*exp(-81*T);
     ##norm(u(end,:) - u_exact(2:end-1)) %check the final t of u_approx and u_exact
-    disp(["||u_approx(T,x) - u_exact(T,x)||_inf, (m, N):",num2str(m)," ",num2str(N(it))," ="])
-    curr_error = norm(u_approx - u_exact(2:end-1), Inf)
+    disp(["||u_approx(T,x) - u_exact(T,x)||_inf, (m, N, k)= (",num2str(m),",",num2str(N(it)),",",num2str(k),") :"])
+    error = norm(u_approx - u_exact(2:end-1), Inf)
   endfor
 endfor

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>PDE - E52</TITLE>
+</HEAD>
+<body>
+	<P>
+	<ul>
+		<li>
+			E52:
+			<br>
+			<ul>
+				<li>
+					Main caller, compares the approx and exact result:
+					<br>
+					<img src="E52_code_1.png">
+					<br>
+					<A HREF="../E52.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Function to calculate u given the coefficient matrix A and initial condition:
+					<br>
+					<img src="E52_code_2.png">
+					<br>
+					<A HREF="../calc_ut.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					half step methods of ODE for u_t (time dimension):
+					<br>
+					<img src="E52_code_3.png">
+					<br>
+					<A HREF="../half_step_methods.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					The norm2(approx-exact) shows that is the solution is u(t, x) = sin(x)e^{−t} + sin(9x)e^{−81t} at t=T
+					<br>
+					<img src="E52(ii)_output_1.png">
+				</li>
+				<br><br>
+				<li>
+					(iii) Finding the value of k for h:
+					<br>
+					<img src="E52(iii)_code_1.png">
+					<br>
+					<A HREF="../E52.m">Source Code</A>
+					<br><br>
+					The columns correspond to the k-values found for {1,2,3} half step methods for each N
+					<br>
+					<img src="E52(iii)_output_1.png">
+				</li>
+				<br>
+				<li>
+					(iv) Applying the k values for h of u0(x) = x − π sign(x).:
+					<br>
+					<img src="E52(iv)_code_1.png">
+					<br>
+					<A HREF="../E52.m">Source Code</A>
+					<br>
+					errors output:
+					<br>
+					<img src="E52(iv)_output_1.png">
+				</li>
+				<br>
+				<li>
+					(v) From the experiments, the mesh size (space) explicitly affects the convergence, as indicated when finding the k-values, larger N results in larger k for all of the tested methods; time-step size also affects the convergence however is not explicitly visible here.
+				</li>
+			<br><br>
+		</li>
+	</ul>
+	</P>
+</body>
+</html>
