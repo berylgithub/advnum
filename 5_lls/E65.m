@@ -1,6 +1,5 @@
-rows = 2
+% Attempts on nested dissection
+rows = 3
 cols = 3
 M = grid_generator(rows, cols);
-[distances, prev] = dijkstra_num(M, 1);
-distances
-prev
+r = nested_dissection_num (M, 4);

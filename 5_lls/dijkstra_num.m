@@ -1,18 +1,4 @@
 ## Copyright (C) 2021 Beryl Aribowo
-## 
-## This program is free software; you can redistribute it and/or modify it
-## under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-## 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-## 
-## You should have received a copy of the GNU General Public License
-## along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 ## -*- texinfo -*- 
 ## @deftypefn {} {@var{retval} =} dijkstra_num (@var{input1}, @var{input2})
 ##
@@ -23,7 +9,7 @@
 ## Created: 2021-07-07
 
 function [distances, prev] = dijkstra_num (G, source)
-  %dijkstra for sparse (recommended, but also possible for dense) matrix G
+  %dijkstra for sparse (recommended, but also possible for dense) symmetric matrix G
   % reference: en.wikipedia.org/wiki/Dijkstra%27s_algorithm
   [i,j,s] = find(G); 
   vertices = unique(i); % get the vertices
@@ -33,7 +19,6 @@ function [distances, prev] = dijkstra_num (G, source)
   distances(source) = 0;
   prev = NaN(n, 1); % previous nodes of distances(k) from source
   sum_halt = n; %if = 0 then halt
-  
   
   % the algorithm:
   while sum_halt > 0
