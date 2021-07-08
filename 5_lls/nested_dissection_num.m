@@ -11,13 +11,17 @@
 function e_order = nested_dissection_num (M, min_v)
   % create nested dissection ordering of a sparse symmetric matrix (laplace matrix)
   % always start from the earliest labelled vertex
+  % uses queue so the larger separators are placed last
   G = M; %copy the sparse matrix
   [i,j,s] = find(G);
   vertices = unique(i)';
-  stack = {vertices} %init stack for recursive procedure
+  que = {vertices} %init que for recursive procedure
   e_order = zeros(1, length(vertices));
   e_pointer = 1; e_pointer_f = length(e_order);
-  [distances, prev] = dijkstra_num(G, vertices(1));
+  
+  % start the nested dissection:
+  [distances, prev] = dijkstra_num(G, que{1}(1)); % get the earliest labelled vertex
+  
   % accumulate distances by neighbourhood (neighbourhood count):
   max_d = max(distances);
   nbs_dist = 1:1:max_d;
@@ -31,6 +35,7 @@ function e_order = nested_dissection_num (M, min_v)
     endfor
     nbs_dist_count(d) = count;
   endfor
+  
   % set the neighbours which has the max num of vertices as separators:
   [_, sep_nb] = max(nbs_dist_count)
   separators = {};
@@ -39,6 +44,7 @@ function e_order = nested_dissection_num (M, min_v)
       separators{end+1} = i;
     endif
   endfor
+  
   % add the separators to the elimination vector and remove it from graph:
   for k=1:length(separators)
     v = separators{k};
@@ -46,22 +52,24 @@ function e_order = nested_dissection_num (M, min_v)
     e_pointer += 1;
     G(v,:) = G(:,v) = 0;
   endfor
+  
   % get the connected components:
   separators
   [i,j,s] = find(G);
-  v = unique(i)
+  v = unique(i);
   [d, p] = dijkstra_num(G, v(1));
   first_cc = find(d ~= Inf)' % first conn comp
   separators = cell2mat(separators);
   temp_cc = zeros(1, length(first_cc) + length(separators));
   temp_cc(1, 1:length(first_cc)) = first_cc;
   temp_cc(1, 1+length(first_cc):length(first_cc)+length(separators)) = separators;
-  sec_cc = setdiff(stack{end}, temp_cc) %second conn comp
-  % add to stack if the vertices left > min_v, otherwise put everything in the elimination vector:
+  sec_cc = setdiff(que{end}, temp_cc) %second conn comp
+  que(1) = [];% deque
+  % add to que if the vertices left > min_v, otherwise put everything in the elimination vector:
   if length(first_cc) > min_v
-    stack{end+1} = first_cc;
+    que{end+1} = first_cc; % enqueue
   else
-    for k=1:length(first_cc) %place first
+    for k=1:length(first_cc) %place first (actually last, but will be flipped in the end)
       v = first_cc(k);
       e_order(e_pointer_f) = v;
       e_pointer_f -= 1;
@@ -69,7 +77,7 @@ function e_order = nested_dissection_num (M, min_v)
     endfor
   endif
   if length(sec_cc) > min_v
-    stack{end+1} = sec_cc;
+    que{end+1} = sec_cc; % enqueue
   else
     for k=1:length(sec_cc) %place first
       v = sec_cc(k);
@@ -81,6 +89,7 @@ function e_order = nested_dissection_num (M, min_v)
   
   
   %..... at the end, reverse the e_order
+  que
+  length(que)
   e_order = flip(e_order)
-  stack
 endfunction
