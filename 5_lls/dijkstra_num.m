@@ -35,13 +35,15 @@ function [distances, prev] = dijkstra_num (G, source)
     endfor
     
     % remove u from Q:
-    Q(u) = -1;
+    idx = find(Q==u);
+    Q(idx) = -1;
     sum_halt -= 1;
     
     % find undeleted neighbours v of u:
     [_, vs, _] = find(G(u,:));
     for v=vs
-      if Q(v) ~= -1
+      idx = find(Q==v);
+      if Q(idx) ~= -1
         alt = distances(u) + G(u,v);
         if alt < distances(v)
           distances(v) = alt;

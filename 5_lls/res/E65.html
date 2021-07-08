@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<style>
+	p {
+		font-family: verdana;
+	}
+	li {
+		font-family: verdana;
+	}
+</style>
+<HEAD>
+  <TITLE>Large Linear Systems - E65</TITLE>
+</HEAD>
+<body>
+	<P>
+	<ul>
+		<li>
+			E65-Nested Dissection:
+			<br>
+			<ul>
+				<li>
+					Main caller, generate the 5-point-discretization Laplace grid, calculate the elimination ordering, then re-order the grid (sparse matrix):
+					<br>
+					<img src="E65_code_1.png">
+					<br>
+					<A HREF="../E65.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Nested Dissection implementation (sort of slightly modified Nested-Dissection), it dissects the graph recursively (using Queue to organize the connected components) by taking the geometrically-thickest separators, until the connected components (for each component) are smaller than min_v:
+					<br>
+					<img src="E65_code_2.png">
+					<br>
+					<img src="E65_code_3.png">
+					<br>
+					<img src="E65_code_4.png">
+					<br>
+					<A HREF="../nested_dissection_num.m">Source Code</A>
+				</li>
+				<br>
+				<li>
+					Dijkstra-algorithm function to determine the connected components:
+					<br>
+					<img src="E65_code_5.png">
+				</li>
+				<br>
+				<li>
+					Output-Spy of {10x8 Laplace grid, reordered Laplace grid with min_v = 4, reordered Laplace grid with min_v = 8}:
+					<br>
+					<img src="E65_output_1.png">
+					<br>
+				</li>
+				<br>
+				<li>
+					Output-Spy of {32x16 Laplace grid, reordered Laplace grid with min_v = 4, reordered Laplace grid with min_v = 32}:
+					<br>
+					<img src="E65_output_2.png">
+					<br>
+				</li>
+				<br>
+				<li>
+					It is visible from the spy pattern that smaller min_v produces more separators, while larger min_v preserves the grid shape on the earlier indexes with smaller separators on later indexes, although the outer diagonals of the preserved grid pattern are sort-of twisted like a knot.
+				</li>
+			<br><br>
+		</li>
+	</ul>
+	</P>
+</body>
+</html>
