@@ -13,7 +13,7 @@ function [distances, prev] = dijkstra_num (G, source)
   % reference: en.wikipedia.org/wiki/Dijkstra%27s_algorithm
   [i,j,s] = find(G); 
   vertices = unique(i); % get the vertices
-  n = length(vertices);
+  n = vertices(end);
   Q = vertices'; % vertex set
   distances = Inf(n, 1); % distance vector
   distances(source) = 0;
